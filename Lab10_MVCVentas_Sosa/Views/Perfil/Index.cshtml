@@ -1,0 +1,77 @@
+﻿@model Modelo.USUARIO
+@{
+    ViewBag.Title = "Perfil Personal";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    List<Modelo.TIPO_USUARIO> tipo = ViewBag.tipo;
+}
+
+<div id="usuario" class="pager">
+    <h1 class="page-header">Mi Perfil Personal</h1>
+
+    @using (Html.BeginForm("Guardar", "Perfil", FormMethod.Post))
+    {
+        <div>
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#info" aria-controls="info" role="tab" data-toggle="tab">Información</a>
+                </li>
+            </ul>
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="password" class="">
+                    <a href="#pass" aria-controls="info" role="tab" data-toggle="tab">Actualizar Password</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="info">
+                    <div class="form-group">
+                        @Html.HiddenFor(x => x.IDUSUARIO)
+
+                        @Html.LabelFor(x => x.NOMBRE)
+                        @Html.TextBoxFor(x => x.NOMBRE, new { @class = "form-control", placeholder = "Ingrese su nombre" })
+                        @Html.ValidationMessageFor(x => x.NOMBRE, null, new { @class = "label label-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.APELLIDOS)
+                        @Html.TextBoxFor(x => x.APELLIDOS, new { @class = "form-control", placeholder = "Ingrese sus apellidos" })
+                        @Html.ValidationMessageFor(x => x.APELLIDOS, null, new { @class = "label label-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.EMAIL)
+                        @Html.TextBoxFor(x => x.EMAIL, new { @class = "form-control", placeholder = "Ingrese sus apellidos" })
+                        @Html.ValidationMessageFor(x => x.EMAIL, null, new { @class = "label label-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tipo de Usuario</label>
+                        <select name="IDTIPOUSUARIO" class="form-control">
+                            @foreach (var t in tipo)
+                            {
+                                <option value="@t.IDTIPOUSUARIO">@t.NOMBRE</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Estado</label>
+                        <select name="ESTADO" class="form-control">
+                            <option @(Model.ESTADO == "I" ? "selected" : "") value="I">Inactivo</option>
+                            <option @(Model.ESTADO == "A" ? "selected" : "") value="A">Activo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Foto</label>
+                        <input type="file" name="Foto" />
+                    </div>
+                </div>
+            </div>
+            <div class="text-right well well well-sm">
+                <button data-ajax="true" class="btn btn-primary">Actualizar</button>
+            </div>
+        </div>
+    }
+
+</div>

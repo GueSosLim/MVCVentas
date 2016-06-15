@@ -1,0 +1,61 @@
+﻿@model Modelo.PEDIDO
+@{
+    ViewBag.Title = "Ver";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 class="page-header">Ver Pedido</h2>
+
+<ol class="breadcrumb">
+
+    <li><a href="~/Pedido/">Pedido</a></li>
+    <li class="active">@Model.FECHA</li>
+</ol>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Información de los Pedidos
+    </div>
+    <div>
+        <dl class="dl-horizontal">
+            <dt>ID</dt>
+            <dd>@Model.IDPEDIDO</dd>
+            <dt>NOMBRE</dt>
+            <dd>@Model.FECHA</dd>
+            <dt>ESTADO</dt>
+            <dd>@Model.ESTADO</dd>
+            <dt>NOMBRE</dt>
+            <dd>@Model.IDUSUARIO</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        Detalles de Pedido
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width:50px;">Id Pedido</th>
+                    <th style="width:50px;">Id Producto</th>
+                    <th style="width:200px;">Precio</th>
+                    <th style="width:200px;">Cantidad</th>
+                    <th style="width:50px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var d in Model.DETALLE_PEDIDO)
+                {
+                    <tr>
+                        <th>@(d.IDPEDIDO)</th>
+                        <th>@(d.IDPRODUCTO)</th>
+                        <th>@(d.PRECIO)</th>
+                        <th>@(d.CANTIDAD)</th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

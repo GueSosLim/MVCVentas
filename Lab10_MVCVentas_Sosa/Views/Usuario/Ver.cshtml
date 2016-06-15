@@ -1,0 +1,65 @@
+﻿@model Modelo.USUARIO
+@{
+    ViewBag.Title = "Ver";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 class="page-header">Ver Usuario</h2>
+
+<ol class="breadcrumb">
+
+    <li><a href="~/Usuario/">Usuario</a></li>
+    <li class="active">@Model.NOMBRE</li>
+</ol>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Información del Usuario
+    </div>
+    <div>
+        <dl class="dl-horizontal">
+            <dt>ID</dt>
+            <dd>@Model.IDUSUARIO</dd>
+            <dt>TIPO USUARIO</dt>
+            <dd>@Model.IDTIPOUSUARIO</dd>
+            <dt>NOMBRE</dt>
+            <dd>@Model.NOMBRE</dd>
+            <dt>APELLIDOS</dt>
+            <dd>@Model.APELLIDOS</dd>
+            <dt>EMAIL</dt>
+            <dd>@Model.EMAIL</dd>
+            <dt>ESTADO</dt>
+            <dd>@Model.ESTADO</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        Pedidos
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width:50px;">Id</th>
+                    <th style="width:200px;">Fecha</th>
+                    <th style="width:50px;">Estado</th>
+                    <th style="width:50px;">Usuario</th>
+                    <th style="width:50px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model.PEDIDO)
+                {
+                    <tr>
+                        <th>@(p.IDPEDIDO)</th>
+                        <th>@(p.FECHA)</th>
+                        <th>@(p.ESTADO == "A" ? "Activo" : "Inactivo")</th>
+                        <th>@(p.IDUSUARIO)</th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

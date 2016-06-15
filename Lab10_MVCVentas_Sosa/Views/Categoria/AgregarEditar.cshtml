@@ -1,0 +1,56 @@
+﻿@model Modelo.CATEGORIA
+@{
+    ViewBag.Title = (Model.IDCATEGORIA > 0 ? Model.NOMBRE : "Nuevo Registro");
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 class="page-header">Agregar/Editar Categoria</h2>
+
+<ol class="breadcrumb">
+    <li>
+        <a href="~/Categoria/">Categorías</a>
+    </li>
+    <li class="active">
+        @(Model.IDCATEGORIA > 0 ? Model.NOMBRE : "Nuevo Registro")
+    </li>
+</ol>
+
+@using (Html.BeginForm("Guardar", "Categoria", FormMethod.Post, new { id = "frm-categoria" }))
+{
+    @Html.HiddenFor(x => x.IDCATEGORIA)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Información de la Categoría
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.LabelFor(x => x.IDCATEGORIA)
+                @Html.TextBoxFor(x => x.IDCATEGORIA, new { @class = "form-control", disabled = true })
+            </div>
+            <div>
+                @Html.LabelFor(x => x.NOMBRE)
+                @Html.TextBoxFor(x => x.NOMBRE, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.NOMBRE, null, new { @class = "label label-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(x => x.DESCRIPCION)
+                @Html.TextAreaFor(x => x.DESCRIPCION, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.DESCRIPCION, null, new { @class = "label label-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(x => x.ESTADO)
+                <select name="estado" class="form-control">
+                    <option @(Model.ESTADO == "A" ? "selected" : "") value="A">Activo</option>
+                    <option @(Model.ESTADO == "I" ? "selected" : "") value="I">Inactivo</option>
+                </select>
+                @Html.ValidationMessageFor(x => x.ESTADO, null, new { @class = "label label-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="text-right">
+        <button type="submit" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span></button>
+        <a href="~/Categoria/Index" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span></a>
+    </div>
+}

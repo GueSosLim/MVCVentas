@@ -1,0 +1,73 @@
+﻿@model Modelo.PRODUCTO
+@{
+    ViewBag.Title = "Ver";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 class="page-header">Ver Producto</h2>
+
+<ol class="breadcrumb">
+
+    <li><a href="~/">Producto</a></li>
+    <li class="active">@Model.NOMBRE</li>
+</ol>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Información de los Productos
+    </div>
+    <div>
+        <dl class="dl-horizontal">
+            <dt>ID</dt>
+            <dd>@Model.IDPRODUCTO</dd>
+            <dt>NOMBRE</dt>
+            <dd>@Model.IDCATEGORIA</dd>
+            <dt>ESTADO</dt>
+            <dd>@Model.NOMBRE</dd>
+            <dt>ID</dt>
+            <dd>@Model.DESCRIPCION</dd>
+            <dt>NOMBRE</dt>
+            <dd>@Model.PRECIO</dd>
+            <dt>ESTADO</dt>
+            <dd>@Model.STOCK</dd>
+            <dt>ID</dt>
+            <dd>@Model.PORTADA</dd>
+            <dt>NOMBRE</dt>
+            <dd>@Model.IMPORTANCIA</dd>
+            <dt>ESTADO</dt>
+            <dd>@Model.IMAGEN</dd>
+            <dt>ESTADO</dt>
+            <dd>@Model.ESTADO</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        Detalles de Pedidos
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width:50px;">Id Pedido</th>
+                    <th style="width:50px;">Id Producto</th>
+                    <th style="width:200px;">Precio</th>
+                    <th style="width:200px;">Cantidad</th>
+                    <th style="width:50px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var d in Model.DETALLE_PEDIDO)
+                {
+                    <tr>
+                        <th>@(d.IDPEDIDO)</th>
+                        <th>@(d.IDPRODUCTO)</th>
+                        <th>@(d.PRECIO)</th>
+                        <th>@(d.CANTIDAD)</th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+﻿@model Modelo.CATEGORIA
+@{
+    ViewBag.Title = "Ver";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 class="page-header">Ver Categoria</h2>
+
+<ol class="breadcrumb">
+
+    <li><a href="~/Categoria/">Categorías</a></li>
+    <li class="active">@Model.NOMBRE</li>
+</ol>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Información de la Categoría
+    </div>
+    <div>
+        <dl class="dl-horizontal">
+            <dt>ID</dt>
+            <dd>@Model.IDCATEGORIA</dd>
+            <dt>CATEGORIA</dt>
+            <dd>@Model.NOMBRE</dd>
+            <dt>DESCRIPCION</dt>
+            <dd>@Model.DESCRIPCION</dd>
+            <dt>ESTADO</dt>
+            <dd>@Model.ESTADO</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        Productos
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width:50px;">Id</th>
+                    <th style="width:200px;">Nombre</th>
+                    <th style="width:200px;">Descripción</th>
+                    <th style="width:50px;">Precio</th>
+                    <th style="width:50px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model.PRODUCTO)
+                {
+                    <tr>
+                        <th>@(p.IDPRODUCTO)</th>
+                        <th>@(p.NOMBRE)</th>
+                        <th>@(p.DESCRIPCION)</th>
+                        <th>@(p.PRECIO)</th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

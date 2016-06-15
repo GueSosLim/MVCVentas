@@ -1,0 +1,43 @@
+﻿@model List<Modelo.PEDIDO>
+@{
+    ViewBag.Title = "Buscar";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 class="page-header">
+    Búsqueda de Pedidos
+</h2>
+
+@using (Html.BeginForm("Buscar", "Pedido", FormMethod.Post, new { criterio = "frm-buscar" }))
+{
+    <div class="text-left">
+        @Html.Label("Buscar: ")
+        @Html.TextBox("criterio", null)
+        <button type="submit" class="btn btn-lg btn-warning pull-right"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+    </div>
+}
+<br />
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th style="width:50px;">Id</th>
+                <th style="width:200px;">Fecha</th>
+                <th style="width:200px;">Estado</th>
+                <th style="width:50px;">Usuario</th>
+                <th style="width:50px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <th>@(m.IDPEDIDO)</th>
+                    <th>@(m.FECHA)</th>
+                    <th>@(m.ESTADO)</th>
+                    <th>@(m.IDUSUARIO)</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

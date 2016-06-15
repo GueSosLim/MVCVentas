@@ -1,0 +1,55 @@
+﻿@model List<Modelo.PRODUCTO>
+@{
+    ViewBag.Title = "Buscar";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 class="page-header">
+    Búsqueda de Productos
+</h2>
+
+@using (Html.BeginForm("Buscar", "Producto", FormMethod.Post, new { criterio = "frm-buscar" }))
+{
+    <div class="text-left">
+        @Html.Label("Buscar: ")
+        @Html.TextBox("criterio", null)
+        <button type="submit" class="btn btn-lg btn-warning pull-right"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+    </div>
+}
+<br />
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th style="width:50px;">Id</th>
+                <th style="width:200px;">Categoría</th>
+                <th style="width:200px;">Nombre</th>
+                <th style="width:200px;">Descripción</th>
+                <th style="width:200px;">Precio</th>
+                <th style="width:200px;">Stock</th>
+                <th style="width:200px;">Portada</th>
+                <th style="width:200px;">Importancia</th>
+                <th style="width:200px;">Imagen</th>
+                <th style="width:50px;">Estado</th>
+                <th style="width:50px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <th>@(m.IDPRODUCTO)</th>
+                    <th>@(m.IDCATEGORIA)</th>
+                    <th>@(m.NOMBRE)</th>
+                    <th>@(m.DESCRIPCION)</th>
+                    <th>@(m.PRECIO)</th>
+                    <th>@(m.STOCK)</th>
+                    <th>@(m.PORTADA == "S" ? "Sí" : "No")</th>
+                    <th>@(m.IMPORTANCIA)</th>
+                    <th>@(m.IMAGEN == "S" ? "Sí" : "No")</th>
+                    <th>@(m.ESTADO == "A" ? "Activo" : "Inactivo")</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

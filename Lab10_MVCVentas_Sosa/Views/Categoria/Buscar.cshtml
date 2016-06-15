@@ -1,0 +1,44 @@
+﻿@model List<Modelo.CATEGORIA>
+@{
+    ViewBag.Title = "Buscar Categoría";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 class="page-header">
+    Búsqueda de Categorías
+</h2>
+
+@using (Html.BeginForm("Buscar", "Categoria", FormMethod.Post, new { criterio = "frm-buscar" }))
+{
+    <div class="text-left">
+        @Html.Label("Buscar: ")
+        @Html.TextBox("criterio", null)
+        <button type="submit" class="btn btn-lg btn-warning pull-right"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+    </div>
+}
+<br />
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th style="width:50px;">Id</th>
+                <th style="width:200px;">Nombre</th>
+                <th style="width:200px;">Descripción</th>
+                <th style="width:50px;">Estado</th>
+                <th style="width:50px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <th>@(m.IDCATEGORIA)</th>
+                    <th>@(m.NOMBRE)</th>
+                    <th>@(m.DESCRIPCION)</th>
+                    <th>@(m.ESTADO == "A" ? "Activo" : "Inactivo")</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

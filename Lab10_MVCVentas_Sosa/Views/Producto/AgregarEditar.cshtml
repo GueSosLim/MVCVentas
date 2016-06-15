@@ -1,0 +1,93 @@
+﻿@model Modelo.PRODUCTO
+@{
+    ViewBag.Title = (Model.IDPRODUCTO > 0 ? Model.NOMBRE : "Nuevo Registro");
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 class="page-header">Agregar/Editar Producto</h2>
+
+<ol class="breadcrumb">
+    <li>
+        <a href="~/Producto/">Productos</a>
+    </li>
+    <li class="active">
+        @(Model.IDPRODUCTO > 0 ? Model.NOMBRE : "Nuevo Registro")
+    </li>
+</ol>
+
+@using (Html.BeginForm("Guardar", "Producto", FormMethod.Post, new { id = "frm-categoria" }))
+{
+    @Html.HiddenFor(x => x.IDPRODUCTO)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Información del Producto
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.LabelFor(x => x.IDPRODUCTO)
+                @Html.TextBoxFor(x => x.IDPRODUCTO, new { @class = "form-control", disabled = true })
+                @Html.ValidationMessageFor(x => x.IDPRODUCTO, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.IDCATEGORIA)
+                @Html.TextBoxFor(x => x.IDCATEGORIA, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.IDCATEGORIA, null, new { @class = "label label-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(x => x.NOMBRE)
+                @Html.TextBoxFor(x => x.NOMBRE, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.NOMBRE, null, new { @class = "label label-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(x => x.DESCRIPCION)
+                @Html.TextBoxFor(x => x.DESCRIPCION, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.DESCRIPCION, null, new { @class = "label label-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(x => x.PRECIO)
+                @Html.TextBoxFor(x => x.PRECIO, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.PRECIO, null, new { @class = "label label-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(x => x.STOCK)
+                @Html.TextBoxFor(x => x.STOCK, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.STOCK, null, new { @class = "label label-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(x => x.PORTADA)
+                <select name="estado" class="form-control">
+                    <option @(Model.PORTADA == "S" ? "selected" : "") value="S">Sí</option>
+                    <option @(Model.PORTADA == "N" ? "selected" : "") value="N">No</option>
+                </select>
+                @Html.ValidationMessageFor(x => x.PORTADA, null, new { @class = "label label-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(x => x.IMPORTANCIA)
+                @Html.TextAreaFor(x => x.IMPORTANCIA, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.IMPORTANCIA, null, new { @class = "label label-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(x => x.IMAGEN)
+                <select name="estado" class="form-control">
+                    <option @(Model.IMAGEN == "S" ? "selected" : "") value="S">Sí</option>
+                    <option @(Model.IMAGEN == "N" ? "selected" : "") value="N">No</option>
+                </select>
+                @Html.ValidationMessageFor(x => x.IMAGEN, null, new { @class = "label label-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(x => x.ESTADO)
+                <select name="estado" class="form-control">
+                    <option @(Model.ESTADO == "A" ? "selected" : "") value="A">Activo</option>
+                    <option @(Model.ESTADO == "I" ? "selected" : "") value="I">Inactivo</option>
+                </select>
+                @Html.ValidationMessageFor(x => x.ESTADO, null, new { @class = "label label-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="text-right">
+        <button type="submit" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span></button>
+        <a href="~/Producto/Index" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span></a>
+    </div>
+}
