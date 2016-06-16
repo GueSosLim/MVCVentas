@@ -20,8 +20,8 @@
 
 </head>
 <body>
-    @if (controlador != "Login")
-    //@if (Modelo.SessionHelper.ExistUserInSession())
+    @*@if (controlador != "Login")*@
+    @if (Modelo.SessionHelper.ExistUserInSession())
     {
         <nav class="navbar navbar-inverse">
             <div class="container">
@@ -70,37 +70,12 @@
             </div>
         </nav>
     }
-        
-    <!--<nav class="navbar navbar-inverse" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Desplegar navegación</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="~/Home">GYSL</a>
-        </div>
 
-        <!-- Agrupar los enlaces de navegación, los formularios y cualquier
-             otro elemento que se pueda ocultar al minimizar la barra
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="~/Categoria/Index">Categoría</a></li>
-                <li><a href="~/Pedido/Index">Pedido</a></li>
-                <li><a href="~/Producto/Index">Producto</a></li>
-                <li><a href="~/TipoUsuario/Index">Tipo Usuario</a></li>
-                <li><a href="~/Usuario/Index">Usuario</a></li>
-                <li><a href="~/DetallePedido/Index">Detalle Pedido</a></li>
-                <li><a href="~/Login/Logout">Cerrar Sesión</a></li>
-            </ul>
-        </div>
-    </nav>-->
     <div class="container">
         <h1 style="background-color:#0C188C; color:white" class="jumbotron"> MVC & BD VENTAS</h1>
         @RenderBody()
     </div>
+
     <script src="~/assets/js/bootstrap.min.js"></script>
     <script src="~/assets/js/jquery.form.js"></script>
     <script src="~/assets/js/ini.js"></script>

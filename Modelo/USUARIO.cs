@@ -263,10 +263,10 @@ namespace Modelo
                     //Obviar campos o ignorar en la actualización
                     if (Foto != null)
                     {
-                        //String archivo = Path.GetFileName(Foto.FileName);//Path.GetExtension(Foto.FileName);
+                        String archivo = Path.GetFileName(Foto.FileName);//Path.GetExtension(Foto.FileName);
                         
                         //Nombre de imagen en forma aleatoria
-                        String archivo = DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(Foto.FileName);
+                        //String archivo = DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(Foto.FileName);
 
                         //Colocar la ruta donde se grabará
                         Foto.SaveAs(HttpContext.Current.Server.MapPath("~/Uploads/" + archivo));

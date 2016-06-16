@@ -16,8 +16,8 @@ namespace Lab10_MVCVentas_Sosa.Controllers
         // GET: Perfil
         public ActionResult Index()
         {
-            ViewBag.tipo = tipo.Listar();
-            return View(usuario.Obtener(SessionHelper.GetUser()));
+            ViewBag.tipo = tipo.ListarTipoUsuario();
+            return View(usuario.ObtenerLogin(SessionHelper.GetUser()));
             //return View();
         }
 
