@@ -31,7 +31,7 @@ namespace Modelo
         public string NOMBREUSU { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(50)]
         public string PASSWORD { get; set; }
 
         [Required]
@@ -279,6 +279,55 @@ namespace Modelo
                     if (this.NOMBREUSU == null) eUsuario.Property(x => x.NOMBREUSU).IsModified = false;
 
                     if (this.PASSWORD == null) eUsuario.Property(x => x.PASSWORD).IsModified = false;
+
+                    db.SaveChanges();
+                    rm.SetResponse(true);
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return rm;
+        }
+
+        public ResponseModel GuardarPassword(HttpPostedFileBase Pass)
+        {
+            var rm = new ResponseModel();
+
+            try
+            {
+                using (var db = new db_ventas())
+                {
+                    db.Configuration.ValidateOnSaveEnabled = false;
+
+                    var eUsuario = db.Entry(this);
+                    eUsuario.State = EntityState.Modified;
+                    //Obviar campos o ignorar en la actualización
+                    if (Pass != null)
+                    {
+                        //String archivo = Path.GetFileName(Foto.FileName);//Path.GetExtension(Foto.FileName);
+
+                        //Nombre de imagen en forma aleatoria
+                        //String archivo = DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(Foto.FileName);
+
+                        //Colocar la ruta donde se grabará
+                        //Foto.SaveAs(HttpContext.Current.Server.MapPath("~/Uploads/" + archivo));
+
+                        //enviar al modelo el nombre del archivo
+                        //this.FOTO = archivo;
+                    }
+                    else eUsuario.Property(x => x.PASSWORD).IsModified = false; // el campo no es obligatorio
+
+                    if (this.NOMBREUSU == null) eUsuario.Property(x => x.NOMBREUSU).IsModified = false;
+
+                    if (this.FOTO == null) eUsuario.Property(x => x.FOTO).IsModified = false;
+
+                    if (this.EMAIL == null) eUsuario.Property(x => x.EMAIL).IsModified = false;
 
                     db.SaveChanges();
                     rm.SetResponse(true);
