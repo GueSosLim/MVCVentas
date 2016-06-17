@@ -18,11 +18,12 @@
 }
 <br />
 
-<div class="list"></div>
+<div class="list-group" id="list"></div>
 
 <script>
     $(document).ready(function () {
-        $("#lista").anexGrid({
+        $("#list").anexGrid({
+            class: 'table-striped table-hover table-condensed',
             columnas: [
                 //columna1: ID
                 { leyenda: "IDTIPOUSUARIO", columna: "IDTIPOUSUARIO", ordenable: true },
@@ -43,7 +44,7 @@
                 {
                     propiedad: 'NOMBRE', formato: function (tr, obj, valor) {
                         return anexGrid_link({
-                            href: '@Url.Content("~/TipoUsuario/AgregarEditar")' + obj.IDTIPOUSUARIO,
+                            href: '@Url.Content("~/TipoUsuario/AgregarEditar.cshtml")' + obj.IDTIPOUSUARIO,
                             contenido: valor
                         });
                     }
@@ -61,8 +62,8 @@
                     formato: function (tr, obj, valor) {
                         return anexGrid_link({
                             href: '@Url.Content("~/TipoUsuario/Ver")' + obj.IDTIPOUSUARIO,
-                            contenido: "Visualizar",
-                            class: 'btn btn-warning btn-xs'
+                            contenido: '<i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i>',
+                            class: 'btn btn-lg btn-primary'
                         });
                     },
                 },
@@ -71,8 +72,8 @@
                     formato: function (tr, obj, valor) {
                         return anexGrid_link({
                             href: '@Url.Content("~/TipoUsuario/AgregarEditar")' + obj.IDTIPOUSUARIO,
-                            contenido: "Modificar",
-                            class: 'btn btn-primary btn-xs'
+                            contenido: '<i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>',
+                            class: 'btn btn-lg btn-info'
                         });
                     },
                 },
@@ -81,8 +82,8 @@
                     formato: function (tr, obj, valor) {
                         return anexGrid_link({
                             href: '@Url.Content("~/TipoUsuario/Eliminar")' + obj.IDTIPOUSUARIO,
-                            contenido: "Eliminar",
-                            class: 'btn btn-danger btn-xs',
+                            contenido: '<i class="glyphicon glyphicon-trash" aria-hidden="true"></i>',
+                            class: 'btn btn-lg btn-danger',
                             attr: [
                             'onclick="return confirm(\'¿Está seguro de eliminar el registro?\')"'
                             ]

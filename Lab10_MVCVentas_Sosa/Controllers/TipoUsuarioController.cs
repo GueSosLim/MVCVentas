@@ -30,6 +30,11 @@ namespace Lab10_MVCVentas_Sosa.Controllers
             return Json(tipo_usuario.ListarTipoGrilla(grid));
         }
 
+        //public JsonResult Listar(Model.AnexGRID agrid)
+        //{
+        //    return Json(empleado.Listar(agrid), JsonRequestBehavior.AllowGet);
+        //}
+
         public ActionResult Ver(int id)
         {
             return View(tipo_usuario.Obtener(id));
