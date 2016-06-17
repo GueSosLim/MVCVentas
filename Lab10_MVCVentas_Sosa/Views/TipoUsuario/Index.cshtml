@@ -44,7 +44,7 @@
                 {
                     propiedad: 'NOMBRE', formato: function (tr, obj, valor) {
                         return anexGrid_link({
-                            href: '@Url.Content("~/TipoUsuario/AgregarEditar.cshtml")' + obj.IDTIPOUSUARIO,
+                            href: '@Url.Content("~/TipoUsuario/AgregarEditar/")' + obj.IDTIPOUSUARIO,
                             contenido: valor
                         });
                     }
@@ -61,7 +61,7 @@
                 {
                     formato: function (tr, obj, valor) {
                         return anexGrid_link({
-                            href: '@Url.Content("~/TipoUsuario/Ver")' + obj.IDTIPOUSUARIO,
+                            href: '@Url.Content("~/TipoUsuario/Ver/")' + obj.IDTIPOUSUARIO,
                             contenido: '<i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i>',
                             class: 'btn btn-lg btn-primary'
                         });
@@ -71,7 +71,7 @@
                 {
                     formato: function (tr, obj, valor) {
                         return anexGrid_link({
-                            href: '@Url.Content("~/TipoUsuario/AgregarEditar")' + obj.IDTIPOUSUARIO,
+                            href: '@Url.Content("~/TipoUsuario/AgregarEditar/")' + obj.IDTIPOUSUARIO,
                             contenido: '<i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>',
                             class: 'btn btn-lg btn-info'
                         });
@@ -81,7 +81,7 @@
                 {
                     formato: function (tr, obj, valor) {
                         return anexGrid_link({
-                            href: '@Url.Content("~/TipoUsuario/Eliminar")' + obj.IDTIPOUSUARIO,
+                            href: '@Url.Content("~/TipoUsuario/Eliminar/")' + obj.IDTIPOUSUARIO,
                             contenido: '<i class="glyphicon glyphicon-trash" aria-hidden="true"></i>',
                             class: 'btn btn-lg btn-danger',
                             attr: [
