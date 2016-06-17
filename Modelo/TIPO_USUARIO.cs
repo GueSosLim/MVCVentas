@@ -143,5 +143,57 @@ namespace Modelo
             }
             return tipo;
         }
+
+        public AnexGRIDResponde ListarTipoGrilla(AnexGRID grilla)
+        {
+            
+            try
+            {
+                using (var db = new db_ventas())
+                {
+                    grilla.Inicializar();
+
+                    var query = db.TIPO_USUARIO.Where(x => x.IDTIPOUSUARIO > 0);
+
+                    //ordenar por columnas
+                    if (grilla.columna == "IDTIPOUSUARIO")
+                    {
+                        query = grilla.columna_orden == "DESC" ? query.OrderByDescending(x => x.IDTIPOUSUARIO)
+                            : query.OrderBy(x => x.IDTIPOUSUARIO);
+                    }
+                    if (grilla.columna == "NOMBRE")
+                    {
+                        query = grilla.columna_orden == "DESC" ? query.OrderByDescending(x => x.NOMBRE)
+                            : query.OrderBy(x => x.NOMBRE);
+                    }
+                    if (grilla.columna == "ESTADO")
+                    {
+                        query = grilla.columna_orden == "DESC" ? query.OrderByDescending(x => x.ESTADO)
+                            : query.OrderBy(x => x.ESTADO);
+                    }
+
+                    var tipousuario = query.Skip(grilla.pagina).Take(grilla.limite).ToList();
+
+                    var total = query.Count();
+
+                    //enviamos a la grilla
+                    grilla.SetData(
+                        from t in tipousuario
+                        select new
+                        {
+                            t.IDTIPOUSUARIO,
+                            t.NOMBRE,
+                            t.ESTADO
+                        },
+                        total
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return grilla.responde();
+        }
     }
 }

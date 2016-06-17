@@ -25,6 +25,11 @@ namespace Lab10_MVCVentas_Sosa.Controllers
             }
         }
 
+        public JsonResult CargarTipoUsuario(AnexGRID grid)
+        {
+            return Json(tipo_usuario.ListarTipoGrilla(grid));
+        }
+
         public ActionResult Ver(int id)
         {
             return View(tipo_usuario.Obtener(id));
