@@ -96,7 +96,9 @@ namespace Modelo
             {
                 using (var db = new db_ventas())
                 {
-                    usuarios = db.USUARIO.ToList();
+                    usuarios = db.USUARIO
+                                .Include("TIPO_USUARIO")
+                                .ToList();
                 }
             }
             catch (Exception ex)

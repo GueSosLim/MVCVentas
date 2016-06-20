@@ -60,7 +60,9 @@ namespace Modelo
             {
                 using (var db = new db_ventas())
                 {
-                    productos = db.PRODUCTO.ToList();
+                    productos = db.PRODUCTO
+                                    .Include("CATEGORIA")
+                                    .ToList();
                 }
             }
             catch (Exception ex)

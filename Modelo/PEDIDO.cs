@@ -42,12 +42,14 @@ namespace Modelo
             {
                 using (var db = new db_ventas())
                 {
-                    pedidos = db.PEDIDO.ToList();
+                    pedidos = db.PEDIDO
+                                .Include("USUARIO")
+                                .ToList();
                 }
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             return pedidos;
         }
@@ -67,7 +69,7 @@ namespace Modelo
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             return pedidos;
         }
@@ -91,7 +93,7 @@ namespace Modelo
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
@@ -107,7 +109,7 @@ namespace Modelo
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
@@ -128,7 +130,7 @@ namespace Modelo
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             return pedidos;
         }

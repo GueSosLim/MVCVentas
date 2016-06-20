@@ -36,7 +36,9 @@ namespace Modelo
             {
                 using (var db = new db_ventas())
                 {
-                    detalles_pedidos = db.DETALLE_PEDIDO.ToList();
+                    detalles_pedidos = db.DETALLE_PEDIDO
+                                        .Include("PRODUCTO")
+                                        .ToList();
                 }
             }
             catch (Exception ex)
