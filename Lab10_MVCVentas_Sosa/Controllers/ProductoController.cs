@@ -12,6 +12,7 @@ namespace Lab10_MVCVentas_Sosa.Controllers
     public class ProductoController : Controller
     {
         private PRODUCTO producto = new PRODUCTO();//Instancia la clase producto
+        private CATEGORIA tipo = new CATEGORIA();
         // GET: Producto
         public ActionResult Index(string criterio)
         {
@@ -23,6 +24,11 @@ namespace Lab10_MVCVentas_Sosa.Controllers
             {
                 return View(producto.Buscar(criterio));
             }
+        }
+
+        public ActionResult Consulta()
+        {
+                return View(producto.Listar());
         }
 
         public ActionResult Ver(int id)
@@ -64,6 +70,12 @@ namespace Lab10_MVCVentas_Sosa.Controllers
                     criterio == null || criterio == "" ? producto.Listar()//devuelve la lista completa
                     : producto.Buscar(criterio)//devuelve la lista en base a la búsqueda
                     );
+        }
+
+        public ActionResult BuscarCategoria(int criterio = 0)
+        {
+            ViewBag.Combo = tipo.Listar();
+            return View(producto.BuscarCategoria(criterio));
         }
     }
 }

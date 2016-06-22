@@ -103,7 +103,7 @@ namespace Modelo
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             return usuarios;
         }

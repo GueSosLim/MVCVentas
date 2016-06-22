@@ -67,7 +67,7 @@ namespace Modelo
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             return productos;
         }
@@ -87,7 +87,7 @@ namespace Modelo
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             return productos;
         }
@@ -111,7 +111,7 @@ namespace Modelo
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
@@ -127,7 +127,7 @@ namespace Modelo
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
@@ -148,7 +148,37 @@ namespace Modelo
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
+            }
+            return productos;
+        }
+
+        public List<PRODUCTO> BuscarCategoria(int criterio)
+        {
+            var productos = new List<PRODUCTO>();
+            try
+            {
+                using (var db = new db_ventas())
+                {
+                    if (criterio > 0)
+                    {
+                         productos = db.PRODUCTO
+                                .Include("CATEGORIA")
+                                .Where(x => x.IDCATEGORIA == criterio)
+                                .ToList();
+                    }
+                    else
+                    {
+                        productos = db.PRODUCTO
+                            .Include("CATEGORIA")
+                            .ToList();
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             return productos;
         }

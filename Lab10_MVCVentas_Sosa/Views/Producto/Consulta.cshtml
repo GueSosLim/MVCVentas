@@ -1,0 +1,28 @@
+﻿@model List<Modelo.PRODUCTO>
+@{
+    ViewBag.Title = "Consulta";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th style="width:50px;">Id</th>
+                <th style="width:200px;">Nombre</th>
+                <th style="width:200px;">Cantidad Producto</th>
+                <th style="width:50px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <th>@(m.CATEGORIA.IDCATEGORIA)</th>
+                    <th>@(m.CATEGORIA.NOMBRE)</th>
+                    <th>@(m.STOCK)</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

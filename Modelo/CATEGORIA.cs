@@ -31,6 +31,8 @@ namespace Modelo
         [StringLength(1)]
         public string ESTADO { get; set; }
 
+        //public virtual PRODUCTO PRODUCTOS { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PRODUCTO> PRODUCTO { get; set; }
 
@@ -41,12 +43,13 @@ namespace Modelo
             {
                 using (var db = new db_ventas())
                 {
-                    categorias = db.CATEGORIA.ToList();
+                    categorias = db.CATEGORIA
+                                   .ToList();
                 }
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             return categorias;
         }
