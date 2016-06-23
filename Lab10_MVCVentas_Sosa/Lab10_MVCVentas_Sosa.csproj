@@ -114,7 +114,9 @@
     <Content Include="assets\js\jquery.js" />
     <Content Include="assets\js\npm.js" />
     <Content Include="Global.asax" />
+    <None Include="Properties\PublishProfiles\MVCal - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\MVCal - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\MVCal - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\MVCal - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\MVCVentasCompleto - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\MVCVentasCompleto - Web Deploy.pubxml" />
