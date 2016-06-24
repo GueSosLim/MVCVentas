@@ -170,5 +170,90 @@ namespace Modelo
             }
             return categorias;
         }
+
+        //public List<CATEGORIA> Consulta() //retornar es una colección
+        //{
+        //    try
+        //    {
+        //        using (var db = new db_ventas())
+        //        {
+        //            var categorias1 = db.CATEGORIA.GroupJoin(db.PRODUCTO,
+        //                p => p.IDCATEGORIA,
+        //                c => c.IDCATEGORIA,
+        //                (pro, cat) => new
+        //                {
+        //                    IDCATEGORIA,
+        //                    cate = cat.NOMBRE,
+        //                    total = pro.PRODUCTO.Count()
+        //                });
+
+        //            var categorias2 = from c in db.CATEGORIA
+        //                             join p in db.PRODUCTO
+        //                             on c.IDCATEGORIA equals p.IDCATEGORIA into g
+        //                             select new
+        //                             {
+        //                                 IDCATEGORIA = c.IDCATEGORIA,
+        //                                 NOMBRE = c.NOMBRE,
+        //                                 total = g.Count()
+        //                             };
+
+        //            var categorias3 = db.CATEGORIA
+        //                                .Include(x => x.PRODUCTO)
+        //                                .GroupBy(g => new { g.IDCATEGORIA, g.NOMBRE })
+        //                                .Select(new CATEGORIA { IDCATEGORIA = g.key.IDCATEGORIA });
+        //            //NOMBRE = g.key.IDCATEGORIA})
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    return categorias2;
+        //}
+
+        public List<CATEGORIA> Consulta() //retornar es una colección
+        {
+            var categorias3 = new List<CATEGORIA>();
+            try
+            {
+                using (var db = new db_ventas())
+                {
+                    //var categorias1 = db.CATEGORIA.GroupJoin(db.PRODUCTO,
+                    //    p => p.IDCATEGORIA,
+                    //    c => c.IDCATEGORIA,
+                    //    (pro, cat) => new
+                    //    {
+                    //        IDCATEGORIA,
+                    //        cate = cat.NOMBRE,
+                    //        total = pro.PRODUCTO.Count()
+                    //    });
+
+                    //var categorias2 = from c in db.CATEGORIA
+                    //                  join p in db.PRODUCTO
+                    //                  on c.IDCATEGORIA equals p.IDCATEGORIA into g
+                    //                  select new
+                    //                  {
+                    //                      IDCATEGORIA = c.IDCATEGORIA,
+                    //                      NOMBRE = c.NOMBRE,
+                    //                      total = g.Count()
+                    //                  }
+                    //                  ;
+
+                    categorias3 = db.CATEGORIA
+                                        .Include(x => x.PRODUCTO)
+                                        .GroupBy(g => new { g.IDCATEGORIA, g.NOMBRE })
+                                        .Select(g => new CATEGORIA { IDCATEGORIA = g.Key.IDCATEGORIA,
+                                            NOMBRE = g.Key.NOMBRE
+                                        })
+                                        .ToList();
+                   
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return categorias3;
+        }
     }
 }
