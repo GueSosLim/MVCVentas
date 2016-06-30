@@ -1,4 +1,4 @@
-﻿@model List<Modelo.PRODUCTO>
+﻿@model List<Modelo.CATEGORIA>
 @{
     ViewBag.Title = "Consulta";
     Layout = "~/Views/Shared/Layout.cshtml";
@@ -10,17 +10,16 @@
             <tr>
                 <th style="width:50px;">Id</th>
                 <th style="width:200px;">Nombre</th>
-                <th style="width:200px;">Cantidad Producto</th>
-                <th style="width:50px;"></th>
+                <th style="width:200px;">Cantidad</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var m in Model)
             {
                 <tr>
-                    <th>@(m.CATEGORIA.IDCATEGORIA)</th>
-                    <th>@(m.CATEGORIA.NOMBRE)</th>
-                    <th>@(m.STOCK)</th>
+                    <th>@(m.IDCATEGORIA)</th>
+                    <th>@(m.NOMBRE)</th>
+                    <th>@(m.PRODUCTO)</th>
                 </tr>
             }
         </tbody>

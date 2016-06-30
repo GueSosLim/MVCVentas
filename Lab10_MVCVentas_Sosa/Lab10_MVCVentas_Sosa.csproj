@@ -198,8 +198,8 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Perfil\Index.cshtml" />
     <Content Include="Views\Password\Index.cshtml" />
-    <Content Include="Views\Producto\Consulta.cshtml" />
     <Content Include="Views\Producto\BuscarCategoria.cshtml" />
+    <Content Include="Views\Categoria\Consulta.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

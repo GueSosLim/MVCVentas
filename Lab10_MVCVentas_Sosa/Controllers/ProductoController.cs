@@ -26,11 +26,6 @@ namespace Lab10_MVCVentas_Sosa.Controllers
             }
         }
 
-        public ActionResult Consulta()
-        {
-                return View(producto.Listar());
-        }
-
         public ActionResult Ver(int id)
         {
             return View(producto.Obtener(id));

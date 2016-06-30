@@ -24,7 +24,12 @@ namespace Lab10_MVCVentas_Sosa.Controllers
                 return View(categoria.Buscar(criterio));
             }
         }
-        
+
+        public ActionResult Consulta()
+        {
+            return View(categoria.Consulta());
+        }
+
         public ActionResult Ver(int id)
         {
             return View(categoria.Obtener(id));
