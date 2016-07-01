@@ -1,25 +1,26 @@
-﻿@model List<Modelo.CATEGORIA>
+﻿@model string[,]
 @{
     ViewBag.Title = "Consulta";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
-
-<div class="table-responsive">
-    <table class="table table-hover">
+<div class="table-responsive table-hover">
+    <h1 class="page-header">Consulta</h1>
+    <table class="table">
         <thead>
             <tr>
-                <th style="width:50px;">Id</th>
-                <th style="width:200px;">Nombre</th>
-                <th style="width:200px;">Cantidad</th>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var m in Model)
+            @{ int cant = Model.GetUpperBound(0); }
+            @for (int i = 0; i <= cant; i++)
             {
                 <tr>
-                    <th>@(m.IDCATEGORIA)</th>
-                    <th>@(m.NOMBRE)</th>
-                    <th>@(m.PRODUCTO)</th>
+                    <td>@(Model[i, 0])</td>
+                    <td>@(Model[i, 1])</td>
+                    <td>@(Model[i, 2])</td>
                 </tr>
             }
         </tbody>
