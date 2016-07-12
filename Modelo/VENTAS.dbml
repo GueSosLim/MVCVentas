@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="db_ventas" Class="Db_ventas" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.CATEGORIA" Member="CATEGORIA">
+    <Type Name="CATEGORIA">
+      <Column Name="IDCATEGORIA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPCION" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ESTADO" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Association Name="FK__PRODUCTO__IDCATE__38996AB5" Member="PRODUCTO" ThisKey="IDCATEGORIA" OtherKey="IDCATEGORIA" Type="PRODUCTO" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="sys.database_firewall_rules" Member="Sys_Database_firewall_rules">
+    <Type Name="Sys_Database_firewall_rules">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" CanBeNull="false" />
+      <Column Name="name" Member="Name" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="start_ip_address" Member="Start_ip_address" Type="System.String" DbType="VarChar(45) NOT NULL" CanBeNull="false" />
+      <Column Name="end_ip_address" Member="End_ip_address" Type="System.String" DbType="VarChar(45) NOT NULL" CanBeNull="false" />
+      <Column Name="create_date" Member="Create_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="modify_date" Member="Modify_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DETALLE_PEDIDO" Member="DETALLE_PEDIDO">
+    <Type Name="DETALLE_PEDIDO">
+      <Column Name="IDPEDIDO" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDPRODUCTO" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PRECIO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CANTIDAD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="FK__DETALLE_P__IDPED__440B1D61" Member="PEDIDO" ThisKey="IDPEDIDO" OtherKey="IDPEDIDO" Type="PEDIDO" IsForeignKey="true" />
+      <Association Name="FK__DETALLE_P__IDPRO__4316F928" Member="PRODUCTO" ThisKey="IDPRODUCTO" OtherKey="IDPRODUCTO" Type="PRODUCTO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PEDIDO" Member="PEDIDO">
+    <Type Name="PEDIDO">
+      <Column Name="IDPEDIDO" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FECHA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ESTADO" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="IDUSUARIO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="FK__DETALLE_P__IDPED__440B1D61" Member="DETALLE_PEDIDO" ThisKey="IDPEDIDO" OtherKey="IDPEDIDO" Type="DETALLE_PEDIDO" DeleteRule="NO ACTION" />
+      <Association Name="FK__PEDIDO__IDUSUARI__403A8C7D" Member="USUARIO" ThisKey="IDUSUARIO" OtherKey="IDUSUARIO" Type="USUARIO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PRODUCTO" Member="PRODUCTO">
+    <Type Name="PRODUCTO">
+      <Column Name="IDPRODUCTO" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDCATEGORIA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPCION" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PRECIO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="STOCK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PORTADA" Type="System.String" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="IMPORTANCIA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IMAGEN" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ESTADO" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Association Name="FK__DETALLE_P__IDPRO__4316F928" Member="DETALLE_PEDIDO" ThisKey="IDPRODUCTO" OtherKey="IDPRODUCTO" Type="DETALLE_PEDIDO" DeleteRule="NO ACTION" />
+      <Association Name="FK__PRODUCTO__IDCATE__38996AB5" Member="CATEGORIA" ThisKey="IDCATEGORIA" OtherKey="IDCATEGORIA" Type="CATEGORIA" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TIPO_USUARIO" Member="TIPO_USUARIO">
+    <Type Name="TIPO_USUARIO">
+      <Column Name="IDTIPOUSUARIO" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ESTADO" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Association Name="FK__USUARIO__IDTIPOU__3D5E1FD2" Member="USUARIO" ThisKey="IDTIPOUSUARIO" OtherKey="IDTIPOUSUARIO" Type="USUARIO" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="dbo.USUARIO" Member="USUARIO">
+    <Type Name="USUARIO">
+      <Column Name="IDUSUARIO" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDTIPOUSUARIO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NOMBREUSU" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="PASSWORD" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="APELLIDOS" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EMAIL" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FOTO" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="ESTADO" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Association Name="FK__PEDIDO__IDUSUARI__403A8C7D" Member="PEDIDO" ThisKey="IDUSUARIO" OtherKey="IDUSUARIO" Type="PEDIDO" DeleteRule="NO ACTION" />
+      <Association Name="FK__USUARIO__IDTIPOU__3D5E1FD2" Member="TIPO_USUARIO" ThisKey="IDTIPOUSUARIO" OtherKey="IDTIPOUSUARIO" Type="TIPO_USUARIO" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

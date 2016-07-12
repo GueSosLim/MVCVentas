@@ -261,34 +261,63 @@ namespace Modelo
                     db.Configuration.ValidateOnSaveEnabled = false;
 
                     var eUsuario = db.Entry(this);
-                    eUsuario.State = EntityState.Modified;
-                    //Obviar campos o ignorar en la actualización
-                    if (Foto != null)
-                    {
-                        String archivo = Path.GetFileName(Foto.FileName);//Path.GetExtension(Foto.FileName);
+                    if (this.IDUSUARIO > 0)
+                    { 
+                        eUsuario.State = EntityState.Modified;
+                        //Obviar campos o ignorar en la actualización
+                        if (Foto != null)
+                        {
+                            String archivo = Path.GetFileName(Foto.FileName);//Path.GetExtension(Foto.FileName);
                         
-                        //Nombre de imagen en forma aleatoria
-                        //String archivo = DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(Foto.FileName);
+                            //Nombre de imagen en forma aleatoria
+                            //String archivo = DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(Foto.FileName);
 
-                        //Colocar la ruta donde se grabará
-                        Foto.SaveAs(HttpContext.Current.Server.MapPath("~/Uploads/" + archivo));
+                            //Colocar la ruta donde se grabará
+                            Foto.SaveAs(HttpContext.Current.Server.MapPath("~/Uploads/" + archivo));
 
-                        //enviar al modelo el nombre del archivo
-                        this.FOTO = archivo;
+                            //enviar al modelo el nombre del archivo
+                            this.FOTO = archivo;
+                        }
+                        else eUsuario.Property(x => x.FOTO).IsModified = false; // el campo no es obligatorio
+
+                        if (this.NOMBREUSU == null) eUsuario.Property(x => x.NOMBREUSU).IsModified = false;
+
+                        if (this.PASSWORD == null) eUsuario.Property(x => x.PASSWORD).IsModified = false;
+
+                        db.SaveChanges();
+                        rm.SetResponse(true);
                     }
-                    else eUsuario.Property(x => x.FOTO).IsModified = false; // el campo no es obligatorio
+                    else 
+                    {
+                        eUsuario.State = EntityState.Added;
+                        //Obviar campos o ignorar en la actualización
+                        if (Foto != null)
+                        {
+                            String archivo = Path.GetFileName(Foto.FileName);//Path.GetExtension(Foto.FileName);
 
-                    if (this.NOMBREUSU == null) eUsuario.Property(x => x.NOMBREUSU).IsModified = false;
+                            //Nombre de imagen en forma aleatoria
+                            //String archivo = DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(Foto.FileName);
 
-                    if (this.PASSWORD == null) eUsuario.Property(x => x.PASSWORD).IsModified = false;
+                            //Colocar la ruta donde se grabará
+                            Foto.SaveAs(HttpContext.Current.Server.MapPath("~/Uploads/" + archivo));
 
-                    db.SaveChanges();
-                    rm.SetResponse(true);
+                            //enviar al modelo el nombre del archivo
+                            this.FOTO = archivo;
+                        }
+                        else eUsuario.Property(x => x.FOTO).IsModified = false; // el campo no es obligatorio
+
+                        //if (this.NOMBREUSU == null) eUsuario.Property(x => x.NOMBREUSU).IsModified = false;
+
+                        //if (this.PASSWORD == null) eUsuario.Property(x => x.PASSWORD).IsModified = false;
+
+                        db.SaveChanges();
+                        rm.SetResponse(true);
+                    }
                 }
             }
             catch (DbEntityValidationException e)
             {
-                throw;
+                throw e;
             }
             catch (Exception)
             {

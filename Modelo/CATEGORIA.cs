@@ -44,6 +44,7 @@ namespace Modelo
                 using (var db = new db_ventas())
                 {
                     categorias = db.CATEGORIA
+                                    .Include("PRODUCTO")
                                    .ToList();
                 }
             }
@@ -270,7 +271,7 @@ namespace Modelo
                                {
                                    IDCATEGORIA = c.IDCATEGORIA,
                                    NOMBRE = c.NOMBRE,
-                                   total = g.Count()
+                                   TOTAL = g.Count()
                                }).ToList();
                     categoria = new string[cat.Count(), 3];
                     int count = 0;
@@ -278,7 +279,7 @@ namespace Modelo
                     {
                         categoria[count, 0] = Convert.ToString(c.IDCATEGORIA);
                         categoria[count, 1] = Convert.ToString(c.NOMBRE);
-                        categoria[count, 2] = Convert.ToString(c.total);
+                        categoria[count, 2] = Convert.ToString(c.TOTAL);
                         count++;
                     }
                 }
@@ -289,5 +290,46 @@ namespace Modelo
                 throw ex;
             }
         }
+
+        //public CATEGORIA Consultar(int IDCATEGORIA, string NOMBRE, int TOTAL) //retornar es una colección
+        //{
+        //    var categorias2 = new CATEGORIA();
+        //    try
+        //    {
+        //        using (var db = new db_ventas())
+        //        {
+        //            categorias2 = (from c in db.CATEGORIA
+        //                               join p in db.PRODUCTO
+        //                               on c.IDCATEGORIA equals p.IDCATEGORIA into g
+        //                               from p in g.DefaultIfEmpty()
+        //                               select new
+        //                               {
+        //                                   IDCATEGORIA = c.IDCATEGORIA,
+        //                                   NOMBRE = c.NOMBRE,
+        //                                   TOTAL = g.Count()
+        //                               }).ToListAsync;
+
+        //            var categorias4 = (from C in db.CATEGORIA
+        //                              join P in db.PRODUCTO on C.IDCATEGORIA equals P.IDCATEGORIA into P_join
+        //                              from P in P_join.DefaultIfEmpty()
+        //                              group new { C, P } by new
+        //                              {
+        //                                  C.IDCATEGORIA,
+        //                                  C.NOMBRE
+        //                              } into g
+        //                              select new
+        //                              {
+        //                                  IDCATEGORIA = (int)g.Key.IDCATEGORIA,
+        //                                  g.Key.NOMBRE,
+        //                                  TOTAL = g.Count(p => p.P.IDCATEGORIA != null)
+        //                              }).ToList();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    return categorias2;
+        //}
     }
 }

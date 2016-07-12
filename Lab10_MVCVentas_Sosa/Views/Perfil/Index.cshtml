@@ -8,10 +8,10 @@
 <div id="usuario" class="pager">
     <h1 class="page-header">Mi Perfil Personal</h1>
 
-    @using (Html.BeginForm("Guardar", "Perfil", FormMethod.Post))
+    @using (Html.BeginForm("Guardar", "Perfil", FormMethod.Post, new { id = "frm-usuario", enctype = "multipart/form-data" }))
     {
         <div>
-            <ul class="nav nav-tabs" role="tablist">
+            @*<ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active">
                     <a href="#info" aria-controls="info" role="tab" data-toggle="tab">Información</a>
                 </li>
@@ -20,7 +20,7 @@
                 <li role="password" class="">
                     <a href="#pass" aria-controls="info" role="tab" data-toggle="tab">Actualizar Password</a>
                 </li>
-            </ul>
+            </ul>*@
 
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="info">
@@ -40,7 +40,7 @@
 
                     <div class="form-group">
                         @Html.LabelFor(x => x.EMAIL)
-                        @Html.TextBoxFor(x => x.EMAIL, new { @class = "form-control", placeholder = "Ingrese sus apellidos" })
+                        @Html.TextBoxFor(x => x.EMAIL, new { @class = "form-control", placeholder = "Ingrese su Email" })
                         @Html.ValidationMessageFor(x => x.EMAIL, null, new { @class = "label label-danger" })
                     </div>
 
@@ -64,7 +64,7 @@
 
                     <div class="form-group">
                         <label>Foto</label>
-                        <input type="file" name="Foto" />
+                        <input type="file" name="foto" />
                     </div>
                 </div>
             </div>

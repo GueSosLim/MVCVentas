@@ -116,9 +116,11 @@
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\MVCal - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\MVCal - FTP %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\MVCal - FTP %284%29.pubxml" />
     <None Include="Properties\PublishProfiles\MVCal - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\MVCal - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\MVCal - Web Deploy %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\MVCal - Web Deploy %284%29.pubxml" />
     <None Include="Properties\PublishProfiles\MVCal - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\MVCVentasCompleto - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\MVCVentasCompleto - Web Deploy.pubxml" />
@@ -127,9 +129,12 @@
     <None Include="Properties\PublishProfiles\MVCVentasValidacion - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\MVCVentasValidacion - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.8.0.intellisense.js" />
+    <Content Include="Scripts\exporting.js" />
+    <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\jquery-1.8.0.js" />
     <Content Include="Scripts\jquery-1.8.0.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="assets\js\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

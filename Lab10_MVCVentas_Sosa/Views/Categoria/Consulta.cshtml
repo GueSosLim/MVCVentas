@@ -3,6 +3,11 @@
     ViewBag.Title = "Consulta";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
+
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
 <div class="table-responsive table-hover">
     <h1 class="page-header">Consulta</h1>
     <table class="table">
@@ -26,3 +31,107 @@
         </tbody>
     </table>
 </div>
+
+@*<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script>
+    google.load("visualization", "1", { packages: ["corechart"] });
+    google.setOnLoadCallback(dibujarGrafico);
+    function dibujarGrafico() {
+        // Tabla de datos: valores y etiquetas de la gráfica
+        var data = google.visualization.arrayToDataTable([
+          ['Texto', 'Valor numérico'],
+          ['Texto1', 20.21],
+          ['Texto2', 4.28],
+          ['Texto3', 17.26],
+          ['Texto4', 10.25]
+        ]);
+        var options = {
+            title: 'Nuestro primer ejemplo con Google Charts'
+        }
+        // Dibujar el gráfico
+        new google.visualization.ColumnChart(
+        //ColumnChart sería el tipo de gráfico a dibujar
+          document.getElementById('GraficoGoogleChart-ejemplo-1')
+        ).draw(data, options);
+    }
+</script>
+<body>
+    Comenzando con Google Charts....
+    <div id="GraficoGoogleChart-ejemplo-1" style="width: 800px; height: 600px">
+    </div>
+</body>*@
+
+@*<body>
+    <hr />
+    <button type="button" id="btnGrafico">LLenar Gráfico</button>
+    <hr />
+    <div id="grafico"></div>
+
+    <script>
+        $(document).ready(function () {
+            $("#btnGrafico").click("click", function () {
+                ListarCategorias();
+            });
+        });
+
+        function ListarCategorias() {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: "~/Categoria/Consulta",
+                data: "{}",
+                dataType: "json",
+                success: function (Result) {
+                    Result = Result.d;
+                    var data = [];
+                    for (var i in Result) {
+                        var serie = new Array(Result[i].nom_categoria, Result[i].id_categoria);
+                        data.push(serie);
+                    }
+                    DibujaGrafico(data);
+                    //DreawChartPubli(data, 'container2');
+                },
+                error: function (Result) {
+                    alert("Error");
+                }
+            });
+        }
+
+        function DibujaGrafico(series) {
+            $('#grafico').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: 1,//null,
+                    plotShadow: false
+                },
+                title: {
+                    text: 'Publicidad en mi web 2013 - 2014'
+                },
+                subtitle: {
+                    text: 'mipagina.com'
+                },
+                tooltip: {
+                    pointFormat: '{series.nom_categoria}: {point.y} (<b>{point.percentage:.1f}%</b>)'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.nom_categoria}</b>: {point.y}',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Publicidad',
+                    data: series
+                }]
+            });
+        }
+    </script>
+</body>*@

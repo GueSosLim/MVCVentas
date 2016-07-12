@@ -24,13 +24,20 @@ namespace Lab10_MVCVentas_Sosa.Controllers
         public JsonResult Guardar(USUARIO model, HttpPostedFileBase Foto)
         {
             var rm = new ResponseModel();
-
+            string foto;
             ModelState.Remove("Password");
+
+            if (model.FOTO != null)
+            {
+                foto = model.FOTO;
+                System.IO.File.Delete(Server.MapPath("../Uploads/" + foto));
+            }
 
             if (ModelState.IsValid)
             {
                 rm = model.GuardarFoto(Foto);
             }
+            rm.href = Url.Content("~/Usuario/Index");
             return Json(rm);
         }
     }
